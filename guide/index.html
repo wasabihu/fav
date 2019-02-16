@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>新手指南</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+		<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css" media="screen">
+			* { margin: 0; padding: 0; }
+			
+			body {
+				background: #282828;
+				font: 62.5%/1.2 Arial, Verdana, Sans-Serif;
+				padding: 0 20px;
+			}
+			
+			h1 { font-family: Georgia; font-style: italic; margin-bottom: 10px; }
+			
+			h2 {
+				font-family: Georgia;
+				font-style: italic;
+				margin: 25px 0 5px 0;
+			}
+			
+			p { font-size: 1.2em; }
+			
+			ul li { display: inline; }
+			
+			.wide {
+				border-bottom: 1px #000 solid;
+				width: 4000px;
+			}
+			
+			.fleft { float: left; margin: 0 20px 0 0; }
+			
+			.cboth { clear: both; }
+			
+			#main {
+				background: #fff;
+				margin: 0 auto;
+				padding: 30px;
+				width: 1000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<h1>新手指南</h1>
+			
+			<p>真方便，双击就能修改，我正在使用属于我的微博收藏夹，可以随意的添加你喜欢的网址，<a href="http://wasa.sinaapp.com/?act=inv">你也来试试吧</a>。</p>
+			<h2>主要功能：</h2>
+			<p>1. 基于微博的网上收藏夹，提供默认页面，登錄后可进行个性化设置。</p>
+			<p>2. 即时记录，修改，删除以属于自己的收藏网址。</p>			
+			<p>3. 个性化，每个人都会拥有自己的收藏夹。</p>
+
+			<h2>界面展示</h2>
+			<ul class="gallery clearfix">
+				<li><a href="images/page/01.jpg" rel="prettyPhoto[gallery2]" title="使用微博進行登錄">
+					<img src="images/page/01.jpg" width="60" height="60" alt="默認頁面" /></a></li>
+					
+				<li><a href="images/page/b01.jpg" rel="prettyPhoto[gallery2]" title="验证用户">
+					<img src="images/page/b01.jpg" width="60" height="60" alt="使用微博進行登錄" /></a></li>
+					
+				<li><a href="images/page/02.jpg" rel="prettyPhoto[gallery2]" title="登錄后會在右上角顯示你的信息，增加新增收藏的操作，双击连接可以自由修改。">
+					<img src="images/page/02.jpg" width="60" height="60" alt="登錄后的頁面" /></a></li>
+					
+				<li><a href="images/page/03.jpg" rel="prettyPhoto[gallery2]">
+				<img src="images/page/03.jpg" width="60" height="60" alt="新增收藏" /></a></li>
+				
+				<li><a href="images/page/04.jpg" rel="prettyPhoto[gallery2]">
+				<img src="images/page/04.jpg" width="60" height="60" alt="编辑收藏" /></a></li>
+			</ul>
+<!--
+			<h2>API Call</h2>
+			<script type="text/javascript" charset="utf-8">
+				api_gallery=['images/fullscreen/1.JPG','images/fullscreen/2.jpg','images/fullscreen/3.JPG'];
+				api_titles=['API Call Image 1','API Call Image 2','API Call Image 3'];
+				api_descriptions=['Description 1','Description 2','Description 3'];
+			</script>
+			<p><a href="#" onclick="$.prettyPhoto.open(api_gallery,api_titles,api_descriptions); return false">API call</a></p>
+-->
+		
+			<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+				$("area[rel^='prettyPhoto']").prettyPhoto();
+				
+				$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast',theme:'facebook',slideshow:3000,autoplay_slideshow: false});
+				
+				$(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',slideshow:10000, hideflash: true});
+		
+				$("#custom_content a[rel^='prettyPhoto']:first").prettyPhoto({
+					custom_markup: '<div id="map_canvas" style="width:260px; height:265px"></div>',
+					changepicturecallback: function(){ initialize(); }
+				});
+
+				$("#custom_content a[rel^='prettyPhoto']:last").prettyPhoto({
+					custom_markup: '<div id="bsap_1259344" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div><div id="bsap_1237859" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6" style="height:260px"></div><div id="bsap_1251710" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div>',
+					changepicturecallback: function(){ _bsap.exec(); }
+				});
+			});
+			</script>
+	
+			
+	
+			
+	</div>
+	</body>
+</html>

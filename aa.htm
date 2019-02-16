@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">
+body{ margin:0; padding:0; font-size:12px; font-family:tahoma,"宋体",Simsun, Microsoft YaHei,  Arial Unicode MS, Mingliu, Arial, Helvetica;}
+a:link,a:visited {color: #D39821; text-decoration:none;}
+a:hover {color: #FFBF3E; text-decoration:underline;}
+.hidden{ display:none;}
+.test{ width:600px; margin:0px auto;}
+.test dt{ background:#333333; padding:5px; margin:0px; margin-top:10px; color:#999999;}
+.test dd{ margin:0px; padding:10px; background:#CCCCCC; border:#333333 1px solid;}
+.test dd h4{ padding:5px 0px; font-size:12px; font-weight:bold; margin:0px;}
+.test dd p{ padding:10px; border:#2D7EA6 1px solid; margin:0px; background:#B6EAF3;}
+.test dd ul{ margin:0px; padding:0px; list-style:none; line-height:26px;}
+.test dd ul li{ border-bottom:#666666 1px dashed;}
+.test dd ul li label{ display:block; float:left; width:180px; color:#333333; font-weight:bold;}
+.test dd ul li span{ color:#336600; font-weight:bold;}
+
+.overlay_container{ border:#FF9900 3px solid; padding:5px; width:400px; height:200px; background:#FFFFFF; position:absolute; line-height:22px;}
+.overlay_bg{ background:#000000; position:absolute; left:0px; top:0px;}
+
+.dialogue_t3 h3{ background:#999999; font-size:14px; text-align:center; line-height:22px; font-weight:bold; cursor:move; margin:0px; padding:0px;}
+.dialogue_t3 .resize{ width:15px; height:15px; background:#FF0000; position:absolute; right:0px; bottom:0px; cursor:se-resize;}
+</style>
+<title>jQuery多窗口遮罩插件</title>
+</head>
+
+<body>
+<dl class="test">
+   <dt>OverlayBox说明：</dt>
+   <dd>
+
+      1. 目前仅仅写了一个程序的草稿，基本功能都有了，有待进一步完善。<br />
+      2. 参考了网上的一些类似的程序（thickbox、jqModal等）。<br />
+      3. Author: http://www.wxwdesign.cn
+   </dd>
+   <dt>简单效果 <a href="#" id="demo1">Demo1</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+
+      <p>$("#demo1").overlay($(".dialogue_t"));</p>
+   </dd>
+   <dt>显示遮罩背景 <a href="#" id="demo2">Demo2</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+      <p>$("#demo2").overlay($(".dialogue_t"),{showOverlay:true});</p>
+
+   </dd>
+   <dt>ESC键关闭效果 <a href="#" id="demo3">Demo3</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+      <p>$("#demo3").overlay($(".dialogue_t"),{escClose:true});</p>
+   </dd>
+   <dt>点击背景关闭 <a href="#" id="demo4">Demo4</a></dt>
+
+   <dd>
+      <h4>JavaScript代码：</h4>
+      <p>$("#demo4").overlay($(".dialogue_t"),{showOverlay:true,overlayClose:true});</p>
+   </dd>
+   <dt>Ajax加载效果 <a href="#" id="demo5">Demo5</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+
+      <p>$("#demo5").overlay(null,{Ajax:'content.php',onLoad:demo.Load});</p>
+   </dd>
+   <dt>保留对内容的更改 <a href="#" id="demo6">Demo6</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+      <p>$("#demo6").overlay($(".dialogue_t2"),{showOverlay:true,persist:true,onShow:demo.show2});</p>
+
+   </dd>
+   <dt>综合示例一 <a href="#" id="demo7">Demo7</a></dt>
+   <dd>
+      <h4>JavaScript代码：</h4>
+      <p>$("#demo7").overlay($(".dialogue_t1"),{showOverlay:true,overlayClose:true,escClose:true,onShow:demo.show});</p>
+   </dd>
+    <dt>参数说明：</dt>
+
+   <dd>
+      <ul>
+        <li><label>遮罩背景的透明度：</label><span>opacity</span>:50</li>
+		<li><label>遮罩内容距浏览器的上边距</label><span>top</span>:0</li>
+        <li><label>遮罩内容距浏览器的左边距：</label><span>left</span>:0</li>
+
+        <li><label>遮罩内容的宽度：</label><span>width</span>:400</li>
+        <li><label>遮罩内容的高度：</label><span>height:</span>200</li>
+		<li><label>遮罩初始z-index值：</label><span>zIndex</span>:1000</li>
+		<li><label>是否保留对内容的更改：</label><span>persist</span>:false</li>
+
+		<li><label>是否ESC键关闭遮罩：</label><span>escClose</span>:false</li>
+		<li><label>是否显示遮罩背景：</label><span>showOverlay</span>:false</li>
+		<li><label>是否点击遮罩背景关闭内容：</label><span>overlayClose</span>:false</li>
+		<li><label>遮罩背景的CSS样式：</label><span>overlayCss</span>:{}</li>
+
+		<li><label>遮罩背景的className：</label><span>overlayClass</span>:"overlay_bg"</</li>
+		<li><label>遮罩内容的className：</label><span>containerClass</span>:"overlay_container"</li>
+		<li><label>遮罩内容的CSS样式：</label><span>containerCss</span>:{}</li>
+		<li><label>关闭按钮的className：</label><span>closeClass</span>:"overlay_close"</li>
+
+		<li><label>遮罩显示时绑定的事件：</label><span>onShow</span>:null</li>
+		<li><label>遮罩关闭时绑定的事件：</label><span>onClose</span>:null</li>
+		<li><label>Ajax地址：</label><span>Ajax</span>:null</li>
+		<li><label>Ajax内容加载后绑定事件：</label><span>onLoad</span>:null</li>
+
+		<li><label>Ajax数据发送类型：</label><span>ajaxType</span>:'get'</li>
+		<li><label>遮罩内容加载到某对象：</label><span>appendTo</span>:document.body</li>
+      </ul>
+   </dd>
+</dl>
+<div class="dialogue_t hidden"><strong>对话框窗口</strong> <input type="button" value="关闭" class="overlay_close" /> <input type="text" /> <a href="#" class="overlay_close">关闭</a></div>
+
+<div class="dialogue_t1 hidden"><strong>对话框窗口1</strong> <input type="button" value="关闭" class="overlay_close" /> <input type="text" /> <a href="#" class="overlay_close">关闭</a><br /><a href="#" class="new_w">新对话框</a></div>
+<div class="dialogue_t2 hidden"><strong>对话框窗口2</strong> <a href="#" class="overlay_close">关闭</a><br />此窗口是可以拖动的，点击”复制链接“，会添加内容，关闭本窗口，再次打开，对内容的更改仍然存在。 <a href="#" class="add">复制链接</a> </div>
+<div class="dialogue_t3 hidden"><h3>这里是标题，点击这里拖拽</h3>对话框窗口3<input type="button" class="overlay_close" value="关闭" /><div class="resize"></div></div>
+
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/overlay.js"></script>
+
+<script type="text/javascript">
+var demo={};
+demo.init=function(){
+    $("#demo1").overlay($(".dialogue_t"));
+	$("#demo2").overlay($(".dialogue_t"),{showOverlay:true});
+	$("#demo3").overlay($(".dialogue_t"),{escClose:true});
+	$("#demo4").overlay($(".dialogue_t"),{showOverlay:true,overlayClose:true});
+	$("#demo5").overlay(null,{Ajax:'content.php',onLoad:demo.Load});
+	$("#demo6").overlay($(".dialogue_t2"),{showOverlay:true,persist:true,onShow:demo.show2});
+	$("#demo7").overlay($(".dialogue_t1"),{showOverlay:true,overlayClose:true,escClose:true,onShow:demo.show});
+}
+demo.show=function(){this.overlayContainer.find(".new_w").overlay($(".dialogue_t3"),{width:200,height:100,onShow:function(){this.overlayContainer.jqDrag("h3").jqResize('.resize');}});}
+demo.Load=function(){this.overlayContainer.find(".new_w").overlay($(".dialogue_t3"),{showOverlay:true,width:200,height:120,escClose:true,onShow:function(){this.overlayContainer.jqDrag("h3").jqResize('.resize');}});}
+demo.show2=function(){this.overlayContainer.jqDrag().find(".add").click(function(e){e.preventDefault();$(this).clone(true).appendTo($(this).parent())})}
+demo.init();
+</script>
+</body>
+</html>

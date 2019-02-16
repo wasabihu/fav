@@ -1,0 +1,88 @@
+4.PHP对象中可以使用哪几种访问修饰符，默认修饰符是什么？
+public protected private
+
+
+3. 写一个函数，尽可能高效的，从一个标准 url 里取出文件的扩展名 例如: http://www.phpddt.com.cn/abc/de/fg.php?id=1 需要取出 php 或 .php
+$parse_url = parse_url($url);
+$path = $parse_url['path'];
+$pos = strrpos($path,'.');
+return !$path || !$pos ? NULL : substr($path,$pos);
+
+2 ． 请说明在 php .ini 中 safe_mode 开启之后对于 PHP 系统 函数的影响
+开启之后，主要会对系统操作、文件、权限设置等方法产生影响，平常项目基本上也用不到这些方法。
+主要我想还是用来应对webshell吧，减少被人植入webshell所带来的某些安全问题。
+
+4 ． 请写出让，并说明如何在命令行下运行 PHP 脚本（写出两种方式）同时向 PHP 脚本传递参数？
+1. Php filename.php $agr1 $agr2
+2. php –r “<?php code?>”
+
+11 ．你用什么方法检查 PHP 脚本的执行效率（通常是脚本执行时间）和数据库 SQL 的效率（通常是数据库 Query 时间）， 并定位和分析脚本执行和数据库查询的瓶颈所在？
+
+$begin=microtime(true); //获取程序开始执行的时间
+$stop=microtime(true); //获取程序执行结束的时间
+list($m0,$s0)=explode(" ",$begin);
+list($m1,$s1)=explode(" ",$stop);
+$runtime=($s1+$m1-$s0-$m0)*1000;
+echo '<br />当前脚本执行时间：'.$etime-$stime.'微秒'; 
+
+//对数组冒泡排序
+function bubble_sort($array){
+	$count = count($array);
+	if ($count <= 0) 
+		return false;
+		for($i=0; $i<$count; $i++){
+			for($j=$count-1; $j>$i; $j–){
+			if ($array[$j] < $array[$j-1]){
+				$tmp = $array[$j];
+				$array[$j] = $array[$j-1];
+				$array[$j-1] = $tmp;
+		}
+	}
+}
+return $array;
+
+15、用PHP写出显示客户端IP与服务器IP的代码1分)
+答:打印客户端IP:echo $_SERVER[‘REMOTE_ADDR’]; 或者: getenv('REMOTE_ADDR');
+   打印服务器IP:echo gethostbyname("www.anddd.com")
+   
+16、语句include和require的区别是什么?为避免多次包含同一文件，可用(?)语句代替它们? (2分)
+答:require->require是无条件包含也就是如果一个流程里加入require,无论条件成立与否都会先执行require 
+  include->include有返回值，而require没有(可能因为如此require的速度比include快) 
+  注意:包含文件不存在或者语法错误的时候require是致命的,include不是   
+  
+18、有一个网页地址, 比如: http://www.anddd.com/index.html,如何得到它的内容?($1分)
+   echo file_get_contents("http://www.anddd.com/index.html");  
+   
+状态401代表未被授权,header("Location:www.xxx.php");
+
+21、JS表单弹出对话框函数是?获得输入焦点函数是? (2分)
+答:弹出对话框: alert(),prompt(),confirm()
+   获得输入焦点 focus()
+
+22、JS的转向函数是?怎么引入一个外部JS文件?(2分)
+答:window.location.href,<script type="text/javascript" src="js/js_function.js"></script>
+
+40、取得查询结果集总数的函数是?(1分)
+答:mysql_num_rows($result);
+
+45、请写出PHP5权限控制修饰符(3分)
+答:public(公共),private(私用),protected(继承)
+ 
+46、请写出php5的构造函数和析构函数(2分)
+答:__construct , __destruct
+
+8.语句 include 和 require 都能把另外一个文件包含到当前文件中，它们的区别是____;为了避免多次包含同一文件，
+可以用语句__require_once||include_once__来代替它们。 
+
+1、用PHP打印出前一天的时间格式是2012-5-10 22:21:21
+答:echo date('Y-m-d H:i:s', strtotime('-1 days'));
+
+其实PHP本身就有字符串翻转的函数:strrev(),不妨试试echo strrev($str);
+不过所有的这种方法都不能解决中文字符串翻转的问题，会出错的。
+
+echo $_SERVER['PHP_SELF'].";
+//链接到当前页面的前一页面的 URL 地址:
+echo $_SERVER['HTTP_REFERER'].”
+
+5．请说明在php.ini中safe_mode开启之后对于PHP系统函数的影响（10分）
+exec() system() passthru() popen()  escapeshellcmd()  pcntl_exec()

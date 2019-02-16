@@ -1,0 +1,21 @@
+---
+appname: wasa
+version: 1
+
+handle:
+
+
+
+
+- compress: if(out_header["Content-Length"] >= 10240) compress
+
+- compress: if(path ~ "/images/") compress
+- compress: if(path ~ "/js/") compress
+
+cron:
+    - description: another cron test
+	  url: cron/test.php
+	  schedule: every 18 hour
+	  timezone: Beijing
+	  
+	
